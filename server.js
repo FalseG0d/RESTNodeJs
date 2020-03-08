@@ -1,4 +1,6 @@
 const express=require("express");
+//Express Errors
+require("express-async-errors")
 const app=express();
 const mongoose=require("mongoose");
 const bodyParser=require("body-parser");
@@ -17,6 +19,21 @@ app.use(bodyParser.json())
 
 //Routes
 app.use("/posts",require("./routes/posts"))
+
+//Middleware for Error Handling
+app.use((req,res,next)=>{
+    req.status=404;
+    const error=new Error("Routes Not Found");
+    next(error);
+});
+
+//Error Handler
+app.use((error,req,res,next)=>{
+    res.status(req.status||500).send({
+        message:error.message,
+        stack:error.stack
+    });
+});
 
 //Test PostMan
 app.get("/post",(request,response)=>{
