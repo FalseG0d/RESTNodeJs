@@ -1,14 +1,16 @@
 const mongoose=require("mongoose");
 
-const post_schema=mongoose.Schema({
+const post_schema=new mongoose.Schema(
+    {
     title:{
         type:String,
-        required:true
+        required:"Title is Required"
     },
     content:{
         type:String,
-        required:true
+        required:"Content is Required"
+        }
     }
-})
+);
 
 module.exports=mongoose.model("Post",post_schema);
