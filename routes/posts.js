@@ -10,7 +10,7 @@ const Post=mongoose.model("Post");
 router.post("/",async(req,res)=>{
     
         const post=new Post();
-        //post.title=req.body.title;
+        post.title=req.body.title;
         post.content=req.body.content;
         await post.save();
         res.send(post);
