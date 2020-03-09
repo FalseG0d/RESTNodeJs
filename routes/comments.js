@@ -16,6 +16,19 @@ router.get("/post/:postId",async(req,res)=>{
     res.send(comment);
 })
 
+//Dummy comment put
+
+router.put("/post/:commentId",async(req,res)=>{
+    
+    const comment=await Comment.findByIdAndUpdate({
+        _id:req.params.commentId
+    },req.body,{
+        new:true, // If new:true in addidtional information then
+        runValidater:true
+    })       
+    res.send(comment)//the post object sent here is updated otherwise it is the original one but updates are made regardless  
+
+})
 //Dummy comment request
 
 router.post("/post/:postId",async(req,res)=>{

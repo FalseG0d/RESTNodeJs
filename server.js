@@ -16,7 +16,8 @@ require("./model/Comment")
 //Middleware
 app.use(bodyParser.json())
     .use(morgan())
-
+//Declare Static Files
+app.use(express.static('websites'));
 
 //Routes
 app.use("/posts",require("./routes/posts"))
@@ -45,6 +46,7 @@ app.use((error,req,res,next)=>{
         stack:error.stack
     });
 });
+
 
 //Test PostMan
 app.get("/post",(request,response)=>{
