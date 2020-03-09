@@ -11,6 +11,7 @@ require("./mongo")
 
 //Models
 require("./model/Post")
+require("./model/Comment")
 
 //Middleware
 app.use(bodyParser.json())
@@ -19,6 +20,7 @@ app.use(bodyParser.json())
 
 //Routes
 app.use("/posts",require("./routes/posts"))
+app.use("/comments",require("./routes/comments"))
 
 //Middleware for Error Handling
 app.use((req,res,next)=>{
